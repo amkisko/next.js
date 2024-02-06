@@ -459,8 +459,9 @@ export async function exportAppImpl(
         Object.keys(serverActionsManifest.node).length > 0 ||
         Object.keys(serverActionsManifest.edge).length > 0
       ) {
+        const record = serverActionsManifest.node || serverActionsManifest.edge;
         throw new ExportError(
-          `Server Actions are not supported with static export.`
+          `Server Actions are not supported with static export.\nTraceback:\n${JSON.stringify(record)}`
         )
       }
     }
